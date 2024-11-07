@@ -6,35 +6,52 @@
     <title>Konwerter Mil <-> Kilometrów</title>
 </head>
 <body>
-    <center><h1>Konwerter Jednotek</h1></center>
+    <center><h1>Konwerter Jednostek</h1></center>
+
+    <p id="result"></p>
+
     <script>
+        
         function convert() {
-           let jednostka = (prompt("Na jakas jednostke chcesz zamienic km czy mile"));
+            
+            let conversionType = prompt("Jaką konwersję chcesz wykonać?\nWpisz '1' dla konwersji z mil na km\nWpisz '2' dla konwersji z km na mile");
+            
+            
+            if (conversionType !== '1' && conversionType !== '2') {
+                document.getElementById("result").innerText = "Wprowadź poprawny wybór!";
+                return;
+            }
+           
+            let value = prompt("Podaj wartość do konwersji:");
 
-
-            switch (true) {
-                case (value === ""):
-                    result = "Proszę wprowadzić wartość!";
-                    break;
-                case (isNaN(value)):
-                    result = "Wprowadź liczbę!";
-                    break;
-                default:
-                    if (conversionType === "miles_to_km") {
-                        
-                        result = (value * 1.60934).toFixed(2) + " km";
-                    } else if (conversionType === "km_to_miles") {
-                    
-                        result = (value * 0.621371).toFixed(2) + " mi";
-                    }
-                    break;
+            
+            if (value === "" || isNaN(value)) {
+                document.getElementById("result").innerText = "Proszę wprowadzić liczbę!";
+                return;
             }
 
-            document.getElementById("result").innerText = result;
+            
+            value = parseFloat(value);
+            let result = "";
+
+            
+            if (conversionType === '1') {
+                
+                result = (value * 1.60934).toFixed(2) + " km";
+            } else if (conversionType === '2') {
+                
+                result = (value * 0.621371).toFixed(2) + " mi";
+            }
+
+           
+            document.getElementById("result").innerText = `Wynik konwersji: ${result}`;
         }
+
+        
+        convert();
     </script>
-    
-    <p id="result"></p>
+
 </body>
 </html>
+
 
