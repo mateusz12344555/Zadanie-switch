@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konwerter Mil <-> Kilometrów</title>
+</head>
+<body>
+    <center><h1>Konwerter Jednotek</h1></center>
     <script>
         function convert() {
-            let value = document.getElementById("value").value;
-            let conversionType = document.getElementById("conversionType").value;
-            let result;
+           let jednostka = (prompt("Na jakas jednostke chcesz zamienic km czy mile"));
 
-            // Sprawdzanie wartości przy pomocy switch
+
             switch (true) {
                 case (value === ""):
                     result = "Proszę wprowadzić wartość!";
@@ -20,10 +21,10 @@
                     break;
                 default:
                     if (conversionType === "miles_to_km") {
-                        // Konwersja mil na kilometry (1 mila = 1.60934 km)
+                        
                         result = (value * 1.60934).toFixed(2) + " km";
                     } else if (conversionType === "km_to_miles") {
-                        // Konwersja kilometrów na mile (1 km = 0.621371 mila)
+                    
                         result = (value * 0.621371).toFixed(2) + " mi";
                     }
                     break;
@@ -32,24 +33,6 @@
             document.getElementById("result").innerText = result;
         }
     </script>
-</head>
-<body>
-    <h1>Konwerter Mil <-> Kilometrów</h1>
-
-    <label for="value">Wprowadź wartość:</label>
-    <input type="text" id="value" placeholder="Podaj wartość">
-
-    <br><br>
-
-    <label for="conversionType">Wybierz konwersję:</label>
-    <select id="conversionType">
-        <option value="miles_to_km">Mile na Kilometry</option>
-        <option value="km_to_miles">Kilometry na Mile</option>
-    </select>
-
-    <br><br>
-
-    <button onclick="convert()">Przelicz</button>
     
     <p id="result"></p>
 </body>
