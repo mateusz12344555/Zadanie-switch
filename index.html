@@ -3,37 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konwerter Mil <-> Kilometrów</title>
+    <title>Sprawdzanie Litery w Tekście</title>
 </head>
 <body>
-    <center><h1>Konwerter Jednostek</h1></center>
+    <h1>Sprawdzanie Litery w Tekście</h1>
+    <label for="textInput">Wprowadź tekst:</label>
+    <input type="text" id="textInput" placeholder="Wprowadź tekst..."><br><br>
+
+    <label for="letterInput">Wprowadź literę:</label>
+    <input type="text" id="letterInput" placeholder="Wprowadź literę..." maxlength="1"><br><br>
+
+    <button onclick="findLetterPosition()">Sprawdź pozycję litery</button>
     <p id="result"></p>
-    <script>      
-        function convert() {   
-            let conversionType = prompt("Jaką konwersję chcesz wykonać?\nWpisz '1' dla konwersji z mil na km\nWpisz '2' dla konwersji z km na mile"); 
-            if (conversionType !== '1' && conversionType !== '2') {
-                document.getElementById("result").innerText = "Wprowadź poprawny wybór!";
+
+    <script>
+        function findLetterPosition() {
+            var text = document.getElementById("textInput").value;
+            var letter = document.getElementById("letterInput").value;
+
+            if (!text || !letter) {
+                document.getElementById("result").innerText = "Proszę wprowadzić tekst i literę.";
                 return;
             }
-            let value = prompt("Podaj wartość do konwersji:");
-            if (value === "" || isNaN(value)) {
-                document.getElementById("result").innerText = "Proszę wprowadzić liczbę!";
-                return;
-            }  
-            value = parseFloat(value);
-            let result = "";
-            if (conversionType === '1') {
-                
-                result = (value * 1.60934).toFixed(2) + " km";
-            } else if (conversionType === '2') {
-                
-                result = (value * 0.621371).toFixed(2) + " mi";
-            }  
-            document.getElementById("result").innerText = `Wynik konwersji: ${result}`;
+
+            // Zamieniamy tekst i literę na małe litery dla case-insensitive search
+            var lowerCaseText = text.toLowerCase();
+            var lowerCaseLetter = letter.toLowerCase();
+
+            // Szukamy pozycji litery w tekście
+            var position = lowerCaseText.indexOf(lowerCaseLetter);
+
+            if (position === -1) {
+                document.getElementById("result").innerText = `Litera '${letter}' nie została znaleziona w tekście.`;
+            } else {
+                document.getElementById("result").innerText = `Litera '${letter}' znajduje się na pozycji ${position}.`;
+            }
         }
-        convert();
     </script>
 </body>
 </html>
 
-
+  
